@@ -1,0 +1,68 @@
+# Python Bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual Environment
+venv/
+.env/
+env/
+.venv/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS Files
+.DS_Store
+
+# Windows Files
+Thumbs.db
+ehthumbs.db
+
+# Data Files
+data/processed/
+data/raw/
+
+
+# Logs
+*.log
+
+# Output directories (e.g., if you're saving models or results to a specific folder)
+# output/
+# model/
+# results/
+
+# Configuration Files (Optional, include if you don't want to track local configurations)
+# *.env
+# config.json
+
+# Test Coverage Files
+.coverage
+*.coverage
+
+# Python Distribution / Packaging
+*.egg-info/
+dist/
+build/
+
+# Miscellaneous files
+*.bak
+*.tmp
+
+# Specific Python files to ignore
+test_ollama_mistral.py
+clean_processed_txts.py
+old_sickle_fetch.py
+
+# Ignore data/metadata.csv and data/failed_downloads.txt
+data/metadata.csv
+data/failed_downloads.txt
+
+# Ignore environment variable files
+.env

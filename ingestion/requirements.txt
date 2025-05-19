@@ -1,0 +1,7 @@
+requests
+pymupdf
+pdfminer.six
+qdrant-client
+elasticsearch
+pandas
+# Add any other dependencies your ingestion pipeline needs

@@ -1,0 +1,64 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: pdfsearch-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - qdrant
+      - elasticsearch
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - ES_HOST=elasticsearch
+      - ES_PORT=9200
+    restart: unless-stopped
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: pdfsearch-frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://backend:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+  qdrant:
+    image: qdrant/qdrant
+    container_name: pdfsearch-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.1
+    container_name: pdfsearch-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+  ingestion:
+    build: ./ingestion
+    container_name: pdfsearch-ingestion
+    depends_on:
+      - elasticsearch
+      - qdrant
+    entrypoint: ["python", "fetch_arxiv.py"]
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    # Not started by default with `up`, run manually as needed
+volumes:
+  qdrant_data:
+  es_data:

@@ -1,0 +1,10 @@
+# Streamlit frontend requirements for pdf-search-nlp
+streamlit
+requests
+# If you use any backend code directly (like langchain_rag), add those dependencies too
+langchain
+transformers
+sentence-transformers
+qdrant-client
+elasticsearch
+# Add any other dependencies your frontend app imports

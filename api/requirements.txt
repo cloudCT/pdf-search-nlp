@@ -1,0 +1,26 @@
+# API (FastAPI backend) requirements for pdf-search-nlp
+fastapi
+uvicorn
+pydantic
+langchain
+elasticsearch
+qdrant-client
+requests
+transformers
+# For local imports from src/ (vector db, embedding utils, etc.)
+# Make sure src/ is in PYTHONPATH or sys.path
+# If you use any custom modules, no need to list them here
+
+# LLM RAG dependencies
+# (Used in llm_rag/langchain_rag.py, rag_chain.py, etc.)
+
+# If you use HuggingFace embeddings/models
+sentence-transformers
+
+# For CORS middleware
+python-multipart
+
+# For logging (standard library, but some setups use loguru)
+# loguru  # Uncomment if you use loguru for logging
+
+# Add any additional dependencies for your backend here
